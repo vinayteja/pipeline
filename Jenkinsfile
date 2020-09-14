@@ -1,18 +1,9 @@
-pipeline {
-agent any
- stages {
-  steps {
-stage('git checkout') {
- git 'https://github.com/vijaykumarbandi/pipeline.git'
+node {
+def mvn = tool (name: 'M2-HOME', type: 'maven') + '/bin/mvn'
+stage('SCM Checkout'){
+git 'https://github.com/vijaykumarbandi/pipeline.git'
 }
-  }
-stage('compile-package') {
- steps {
- def mvnHome = tool name: 'M2-HOME',type: 'maven'
- sh "${mvnHome}/bin/mvn package"
+ stage('Mvn Package'){
+  sh "${mvn} clean package"
+   }
 }
-}
-}
-}
-
-
