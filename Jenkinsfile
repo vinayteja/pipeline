@@ -2,11 +2,13 @@ pipeline {
 agent any
  stages {
 stage('git checkout') {
-git 'https://github.com/vijaykumarbandi/pipeline.git'
+ git 'https://github.com/vijaykumarbandi/pipeline.git'
 }
 stage('compile-package') {
+ steps {
 def mvnHome = tool name: 'M2-HOME', type: 'maven'
  sh "${mvnHome}/bin/mvn package"
+}
 }
 }
 }
