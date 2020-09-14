@@ -7,11 +7,10 @@ stage('git checkout') {
 }
   }
 stage('compile-package') {
- steps {
-def mvnHome = tool name: 'M2-HOME', type: 'maven'
+ def mvnHome = tool name: 'M2-HOME', type: 'maven'
  sh "${mvnHome}/bin/mvn package"
 }
 }
 }
-}
+
 
