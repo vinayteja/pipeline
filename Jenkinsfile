@@ -4,8 +4,10 @@ node {
     git 'https://github.com/vijaykumarbandi/pipeline.git'
    }
    stage('package') {
-    sh "${mvn} clean package"
+    steps {
+    sh script: mvn 'clean package'
     }
+   }
   stage('email notification') {
    steps {
     mail bcc: '', body: '''hi 
