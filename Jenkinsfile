@@ -1,7 +1,9 @@
-node {
+pipeline {
+ agent any
  tools {
   maven 'M2-HOME'
  }
+ stages{
  stage('scm checkout') {
     git 'https://github.com/vijaykumarbandi/pipeline.git'
    }
@@ -10,14 +12,5 @@ node {
     sh script: mvn 'clean package'
     }
    }
-  stage('email notification') {
-   steps {
-    script {
-    mail bcc: '', body: '''hi 
-its successful''', cc: '', from: '', replyTo: '', subject: 'Jenkins test file', to: 'vijaykumarbandi6594@gmail.com'
-   }
-  }
+ }
 }
-}
-
-    
